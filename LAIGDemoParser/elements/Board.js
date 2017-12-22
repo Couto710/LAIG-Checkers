@@ -41,11 +41,11 @@ Board.prototype.display = function() {
  			this.scene.rotate(-Math.PI/2, 1, 0, 0);
 
  			if(i%2 == 0 && j%2 == 0 || i%2 == 1 && j%2 == 1){
- 				//this.blackmat.setTexture(this.blacktex);
+ 				this.blackmat.setTexture(this.blacktex[0]);
  				this.blackmat.apply();
  			}
  			else{
- 				//this.whitemat.setTexture(this.whitetex);
+ 				this.whitemat.setTexture(this.whitetex[0]);
  				this.whitemat.apply();
  			}
 
