@@ -1722,6 +1722,8 @@ MySceneGraph.prototype.drawEverything = function(node, mat, tex){
 
         material.apply();
 
+        this.scene.registerForPick(j+1, node.leaves[j]);
+
         node.leaves[j].display();
 
         if (node.children.length == 0 && this.scene.selectableNodes == node.nodeID)

@@ -111,6 +111,11 @@
         <amplif_factor s="1" t="1" />                           
     </TEXTURE>
 
+    <TEXTURE id="wood">
+        <file path="images/wood.jpg" />                
+        <amplif_factor s="1" t="1" />                           
+    </TEXTURE>
+
 </TEXTURES>
 
 
@@ -324,6 +329,7 @@
 
         <DESCENDANTS>  
             <NODEREF id="tabuleiro" />
+            <NODEREF id="tabuleiroaux" />
             <NODEREF id="pretas" />
             <NODEREF id="brancas" />
         </DESCENDANTS>
@@ -334,6 +340,20 @@
         <TEXTURE id ="gameboard" />                 
 
         <SCALE sx="40" sy="1" sz="40" />
+        <TRANSLATION x="0" y="0" z="1" />
+        <ROTATION axis="x" angle="-90" />
+
+        <DESCENDANTS>
+            <LEAF id="boardquad" type="rectangle" args="0 1 1 0" />        
+        </DESCENDANTS>
+    </NODE>
+
+    <NODE id="tabuleiroaux">      
+        <MATERIAL id="woodMaterial" />     
+        <TEXTURE id ="wood" />                 
+
+        <TRANSLATION x="40" y="0" z="0" />
+        <SCALE sx="20" sy="1" sz="40" />
         <TRANSLATION x="0" y="0" z="1" />
         <ROTATION axis="x" angle="-90" />
 

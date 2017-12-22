@@ -44,6 +44,9 @@ XMLscene.prototype.init = function(application) {
     //setting update period
     this.setUpdatePeriod(10);
     this.time = 0;
+
+    this.setPickEnabled(true);
+
 }
 
 XMLscene.prototype.updateFactorTime = function(date){
@@ -88,7 +91,7 @@ XMLscene.prototype.initLights = function() {
  * Initializes the scene cameras.
  */
 XMLscene.prototype.initCameras = function() {
-    this.camera = new CGFcamera(0.4,0.1,500,vec3.fromValues(12, 5, 10),vec3.fromValues(0, 0, 0));
+    this.camera = new CGFcamera(0.4,0.1,500,vec3.fromValues(6, 20, 30),vec3.fromValues(6, 0, 5));
 }
 
 /* Handler called when the graph is finally loaded. 
@@ -118,6 +121,8 @@ XMLscene.prototype.onGraphLoaded = function()
  */
 XMLscene.prototype.display = function() {
     // ---- BEGIN Background, camera and axis setup
+    this.logPicking();
+    this.clearPickRegistration();
     
     // Clear image and depth buffer everytime we update the scene
     this.gl.viewport(0, 0, this.gl.canvas.width, this.gl.canvas.height);
@@ -187,4 +192,21 @@ XMLscene.prototype.update = function(currTime){
     this.time = currTime;
     for(var node in this.graph.nodes)
         this.graph.nodes[node].updateAnimation(timedif);
+}
+
+
+XMLscene.prototype.logPicking = function() {
+
+    if(this.pickMode == false){
+        if(this.pickResults != null && this.pickResults.length > 0){
+            for(var i = 0; i < this.pickResults.length; i++){
+                var obj = this.pickResults[i][0];
+                if(obj){
+                    var pid = this.pickResults[i][1];
+                    console.log("picked object:  " + obj + " ------ pick id: " + pid);
+                }
+            }
+            this.pickResults.splice(0, this.pickResults.length);
+        }
+    }
 }
