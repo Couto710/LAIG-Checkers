@@ -25,8 +25,7 @@ var NODES_INDEX = 7;
     this.selectableNodes = ["None"];
     this.leaves = [];
 
-    //pickable board
-    this.board = new Board(this.scene);
+    
     
     this.idRoot = null;                    // The id of the root element.
 
@@ -166,6 +165,10 @@ var NODES_INDEX = 7;
         if ((error = this.parseNodes(nodes[index])) != null )
             return error;
     }
+
+    //GAMEBOARD   
+    this.board = new Board(this.scene, this.materials['blackbMaterial'], this.materials['whitebMaterial'], this.textures['boardblack'], this.textures['boardwhite']);
+
 
 }
 
