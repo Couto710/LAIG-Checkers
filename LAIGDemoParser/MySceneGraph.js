@@ -24,6 +24,9 @@ var NODES_INDEX = 7;
     this.nodes = [];
     this.selectableNodes = ["None"];
     this.leaves = [];
+
+    //pickable board
+    this.board = new Board(this.scene);
     
     this.idRoot = null;                    // The id of the root element.
 
@@ -1684,6 +1687,7 @@ MySceneGraph.prototype.log = function(message) {
     var rootn = this.nodes[this.idRoot];
 
     this.drawEverything(rootn, this.defaultMaterialID, null);
+    this.board.display();
 }
 
 MySceneGraph.prototype.drawEverything = function(node, mat, tex){
@@ -1722,7 +1726,7 @@ MySceneGraph.prototype.drawEverything = function(node, mat, tex){
 
         material.apply();
 
-        this.scene.registerForPick(j+1, node.leaves[j]);
+        //this.scene.registerForPick(j+1, node.leaves[j]);
 
         node.leaves[j].display();
 

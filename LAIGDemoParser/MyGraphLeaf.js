@@ -16,7 +16,6 @@ function MyGraphLeaf(graph, xmlelem, args, id) {
 	{
 		case "rectangle":
 		this.primitive = new MyQuad(this.graph.scene, args);
-		console.log
 		break;
 
 		case "cylinder":
