@@ -346,23 +346,9 @@
         <TEXTURE id="null" />  
 
         <DESCENDANTS>  
-            <NODEREF id="tabuleiro" />
             <NODEREF id="tabuleiroaux" />
-            <NODEREF id="pretas" />
-            <NODEREF id="brancas" />
-        </DESCENDANTS>
-    </NODE>
-
-    <NODE id="tabuleiro">      
-        <MATERIAL id="postMaterial" />     
-        <TEXTURE id ="gameboard" />                 
-
-        <SCALE sx="40" sy="1" sz="40" />
-        <TRANSLATION x="0" y="0" z="1" />
-        <ROTATION axis="x" angle="-90" />
-
-        <DESCENDANTS>
-            <LEAF id="boardquad" type="rectangle" args="0 1 1 0" />        
+           <!-- <NODEREF id="pretas" />
+            <NODEREF id="brancas" /> -->
         </DESCENDANTS>
     </NODE>
 
@@ -380,7 +366,7 @@
         </DESCENDANTS>
     </NODE>
 
-    <NODE id="pretas">
+   <!-- <NODE id="pretas">
         <MATERIAL id="blackMaterial" />
         <TEXTURE id="basalto" />
 
@@ -708,7 +694,7 @@
         <DESCENDANTS>
             <LEAF id="branca12" type="cylinder" args="1 2 2 10 20" />
         </DESCENDANTS>
-    </NODE>
+    </NODE>  -->
     
 
 </NODES>

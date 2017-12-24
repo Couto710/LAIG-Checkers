@@ -27,16 +27,13 @@ function Board(scene, blackmaterial, whitematerial, blacktexture, whitetexture) 
 Board.prototype = Object.create(CGFobject.prototype);
 Board.prototype.constructor = Board;
 
-Board.prototype.display = function() {
-
+Board.prototype.display = function() {	
 	
-	
-
  	for(var i = 0; i < 8; i++){
  		for(var j = 0; j < 8; j++){
  			this.scene.pushMatrix();
 
- 			this.scene.translate(i*5, 0.01, j*5 + 5);
+ 			this.scene.translate(i*5, 0, j*5 + 5);
  			this.scene.scale(5, 0, 5);
  			this.scene.rotate(-Math.PI/2, 1, 0, 0);
 
@@ -48,11 +45,8 @@ Board.prototype.display = function() {
  				this.whitemat.setTexture(this.whitetex[0]);
  				this.whitemat.apply();
  			}
-
  			var pid = (i+1)*10 + j+1;
  			this.scene.registerForPick(pid, this.positions[i][j]);
-
- 			this.positions[i][j].display();
 
  			this.scene.popMatrix(); 
  		}

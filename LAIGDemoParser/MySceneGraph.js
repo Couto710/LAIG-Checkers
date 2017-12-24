@@ -24,9 +24,7 @@ var NODES_INDEX = 7;
     this.nodes = [];
     this.selectableNodes = ["None"];
     this.leaves = [];
-
-    
-    
+   
     this.idRoot = null;                    // The id of the root element.
 
     this.axisCoords = [];
@@ -47,6 +45,31 @@ var NODES_INDEX = 7;
 }
 
 /*
+ * Creates game elements
+ */
+ MySceneGraph.prototype.createElements = function() 
+ {
+    //GAMEBOARD   
+    this.board = new Board(this.scene, this.materials['blackbMaterial'], this.materials['whitebMaterial'], this.textures['boardblack'], this.textures['boardwhite']);
+    
+    this.blackpieces = [];
+    this.whitepieces = [];
+    var blackInitPos = [[1, 1], [1, 3], [2, 2], [3, 1], [3, 3], [4, 2], [5, 1], [5, 3], [6, 2], [7, 1], [7, 3], [8, 2]];
+    var whiteInitPos = [[1, 7], [2, 6], [2, 8], [3, 7], [4, 6], [4, 8], [5, 7], [6, 6], [6, 8], [7, 7], [8, 6], [8, 8]];
+
+    for(var i = 0; i < 12; i++){
+
+        var blackp = new Piece(this.scene, this.materials['blackMaterial'], this.textures['basalto'], blackInitPos[i]);
+        this.blackpieces.push(blackp);
+
+        var whitep = new Piece(this.scene, this.materials['whiteMaterial'], this.textures['marmore'], whiteInitPos[i]);
+        this.whitepieces.push(whitep);
+
+        console.log("elements created");
+    }
+ }
+
+/*
  * Callback to be executed after successful reading
  */
  MySceneGraph.prototype.onXMLReady = function() 
@@ -63,6 +86,7 @@ var NODES_INDEX = 7;
     }
     
     this.loadedOk = true;
+    this.createElements();
     
     // As the graph loaded ok, signal the scene so that any additional initialization depending on the graph can take place
     this.scene.onGraphLoaded();
@@ -165,10 +189,6 @@ var NODES_INDEX = 7;
         if ((error = this.parseNodes(nodes[index])) != null )
             return error;
     }
-
-    //GAMEBOARD   
-    this.board = new Board(this.scene, this.materials['blackbMaterial'], this.materials['whitebMaterial'], this.textures['boardblack'], this.textures['boardwhite']);
-
 
 }
 
@@ -1691,6 +1711,28 @@ MySceneGraph.prototype.log = function(message) {
 
     this.drawEverything(rootn, this.defaultMaterialID, null);
     this.board.display();
+    this.displayPieces();
+}
+
+MySceneGraph.prototype.displayPieces = function() {
+
+    for(var i = 0; i < this.blackpieces.length; i++){
+        this.scene.registerForPick((this.blackpieces[i].position[0]*10) + this.blackpieces[i].position[1], this.blackpieces[i]);
+
+        this.scene.pushMatrix();
+        this.scene.translate((this.blackpieces[i].position[0] - 1)*5 + 2.5, 0, (this.blackpieces[i].position[1] - 1)*5 + 2.5);
+        this.blackpieces[i].display();
+        this.scene.popMatrix();
+    }
+
+    for(var j = 0; j < this.whitepieces.length; j++){
+        this.scene.registerForPick((this.whitepieces[j].position[0]*10) + this.whitepieces[j].position[1], this.whitepieces[j]);
+
+        this.scene.pushMatrix();
+        this.scene.translate((this.whitepieces[j].position[0] - 1)*5 + 2.5, 0, (this.whitepieces[j].position[1] - 1)*5 + 2.5);
+        this.whitepieces[j].display();
+        this.scene.popMatrix();
+    }
 }
 
 MySceneGraph.prototype.drawEverything = function(node, mat, tex){
