@@ -3,7 +3,7 @@
  * @constructor
  */
 
-function Piece(scene, material, texture, position) {
+function Piece(scene, material, texture, position, type) {
 	CGFobject.call(this, scene);
 
 	this.scene = scene;
@@ -11,6 +11,7 @@ function Piece(scene, material, texture, position) {
 	this.texture = texture;
 	this.primitive = new MyFullCylinder(this.scene, "1 2 2 10 20");
 	this.position = position;
+	this.type = type; 
 }
 
 Piece.prototype = Object.create(CGFobject.prototype);

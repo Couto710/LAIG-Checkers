@@ -59,10 +59,10 @@ var NODES_INDEX = 7;
 
     for(var i = 0; i < 12; i++){
 
-        var blackp = new Piece(this.scene, this.materials['blackMaterial'], this.textures['basalto'], blackInitPos[i]);
+        var blackp = new Piece(this.scene, this.materials['blackMaterial'], this.textures['basalto'], blackInitPos[i], 'b');
         this.blackpieces.push(blackp);
 
-        var whitep = new Piece(this.scene, this.materials['whiteMaterial'], this.textures['marmore'], whiteInitPos[i]);
+        var whitep = new Piece(this.scene, this.materials['whiteMaterial'], this.textures['marmore'], whiteInitPos[i], 'w');
         this.whitepieces.push(whitep);
 
         console.log("elements created");
