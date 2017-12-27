@@ -13,8 +13,8 @@ function Piece(scene, material, texture, position) {
 	this.position = position;
 }
 
-Board.prototype = Object.create(CGFobject.prototype);
-Board.prototype.constructor = Board;
+Piece.prototype = Object.create(CGFobject.prototype);
+Piece.prototype.constructor = Piece;
 
 Piece.prototype.display = function() {
 
@@ -23,6 +23,6 @@ Piece.prototype.display = function() {
 	this.material.setTexture(this.texture[0]);
 	this.material.apply();
 	this.primitive.display();
-	this.popMatrix();
+	this.scene.popMatrix();
 
 }

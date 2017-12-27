@@ -48,6 +48,8 @@ Board.prototype.display = function() {
  			var pid = (i+1)*10 + j+1;
  			this.scene.registerForPick(pid, this.positions[i][j]);
 
+ 			this.positions[i][j].display();
+
  			this.scene.popMatrix(); 
  		}
  	}

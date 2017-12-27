@@ -20,7 +20,7 @@ serialInclude(['../lib/CGF.js', 'XMLscene.js', 'MySceneGraph.js',
              './animations/CircularAnimation.js','./animations/LinearAnimation.js',
              './animations/BezierAnimation.js', './animations/ComboAnimation.js',
              './shaders/uScale.frag', './shaders/uScale.frag',
-             './elements/Board.js',  
+             './elements/Board.js', './elements/Piece.js',  
 
 main=function()
 {
