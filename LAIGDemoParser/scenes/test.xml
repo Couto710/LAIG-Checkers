@@ -66,327 +66,375 @@
     <!-- Textures -->
     <TEXTURES>
 
-       <TEXTURE id="court">
-        <file path="images/court.jpg" />                
-        <amplif_factor s="1" t="1" />                           
-    </TEXTURE>
+        <TEXTURE id="gameboard">
+            <file path="images/gameboard.jpg" />                
+            <amplif_factor s="1" t="1" />                           
+        </TEXTURE>
 
-    <TEXTURE id="boardTex">
-        <file path="images/board.jpg" />                
-        <amplif_factor s="1" t="1" />                           
-    </TEXTURE>        
+        <TEXTURE id="basalto">
+            <file path="images/black.jpg" />                
+            <amplif_factor s="1" t="1" />                           
+        </TEXTURE>
 
-    <TEXTURE id="ball">
-        <file path="images/ball.png" />                
-        <amplif_factor s="1" t="1" />                           
-    </TEXTURE>
+        <TEXTURE id="marmore">
+            <file path="images/white.jpg" />                
+            <amplif_factor s="1" t="1" />                           
+        </TEXTURE>
 
-    <TEXTURE id="net">
-        <file path="images/net.jpg" />                
-        <amplif_factor s="1" t="1" />                           
-    </TEXTURE>
+        <TEXTURE id="wood">
+            <file path="images/wood.jpg" />                
+            <amplif_factor s="1" t="1" />                           
+        </TEXTURE>
 
-    <TEXTURE id="teamcroc">
-        <file path="images/croc.jpg" />                
-        <amplif_factor s="1" t="1" />                           
-    </TEXTURE>
+        <TEXTURE id="boardblack">
+            <file path="images/boardblack.jpg" />                
+            <amplif_factor s="1" t="1" />                           
+        </TEXTURE>
 
-    <TEXTURE id="roomba">
-        <file path="images/roomba.png" />                
-        <amplif_factor s="1" t="1" />                           
-    </TEXTURE>
+        <TEXTURE id="boardwhite">
+            <file path="images/boardwhite.jpg" />                
+            <amplif_factor s="1" t="1" />                           
+        </TEXTURE>
 
-    <TEXTURE id="gameboard">
-        <file path="images/gameboard.jpg" />                
-        <amplif_factor s="1" t="1" />                           
-    </TEXTURE>
+        <TEXTURE id="wall">
+            <file path="images/wall.jpg" />                
+            <amplif_factor s="1" t="1" />                           
+        </TEXTURE>
 
-    <TEXTURE id="basalto">
-        <file path="images/black.jpg" />                
-        <amplif_factor s="1" t="1" />                           
-    </TEXTURE>
+        <TEXTURE id="floor">
+            <file path="images/floor.jpg" />                
+            <amplif_factor s="1" t="1" />                           
+        </TEXTURE>
 
-    <TEXTURE id="marmore">
-        <file path="images/white.jpg" />                
-        <amplif_factor s="1" t="1" />                           
-    </TEXTURE>
-
-    <TEXTURE id="wood">
-        <file path="images/wood.jpg" />                
-        <amplif_factor s="1" t="1" />                           
-    </TEXTURE>
-
-    <TEXTURE id="boardblack">
-        <file path="images/boardblack.jpg" />                
-        <amplif_factor s="1" t="1" />                           
-    </TEXTURE>
-
-    <TEXTURE id="boardwhite">
-        <file path="images/boardwhite.jpg" />                
-        <amplif_factor s="1" t="1" />                           
-    </TEXTURE>
-
-    <TEXTURE id="wall">
-        <file path="images/wall.jpg" />                
-        <amplif_factor s="1" t="1" />                           
-    </TEXTURE>
-
-    <TEXTURE id="floor">
-        <file path="images/floor.jpg" />                
-        <amplif_factor s="1" t="1" />                           
-    </TEXTURE>
-
-</TEXTURES>
+    </TEXTURES>
 
 
-<MATERIALS>
-    <!-- Rim material -->
-    <MATERIAL id="rimMaterial">                                  
-        <shininess value="80" />
-        <specular r="0.73" g="0.63" b="0.63" a="0.55" />        
-        <diffuse r="0.61" g="0.041" b="0.041" a="0.55" />       
-        <ambient r="0.175" g="0.012" b="0.012" a="0.55" />         
-        <emission r="0.0" g="0.0" b="0.0" a="1" />        
-    </MATERIAL>
+    <MATERIALS>
+        <!-- Rim material -->
+        <MATERIAL id="rimMaterial">                                  
+            <shininess value="80" />
+            <specular r="0.73" g="0.63" b="0.63" a="0.55" />        
+            <diffuse r="0.61" g="0.041" b="0.041" a="0.55" />       
+            <ambient r="0.175" g="0.012" b="0.012" a="0.55" />         
+            <emission r="0.0" g="0.0" b="0.0" a="1" />        
+        </MATERIAL>
 
-    <!-- Wood material -->
-    <MATERIAL id="woodMaterial">                                  
-        <shininess value="1" />
-        <specular r="0.0" g="0.0" b="0.0" a="1" />        
-        <diffuse r="0.6" g="0.298" b="0.0" a="1" />      
-        <ambient r="0.1" g="0.1" b="0.1" a="1" />         
-        <emission r="0.0" g="0.0" b="0.0" a="1" />       
-    </MATERIAL>
+        <!-- Wood material -->
+        <MATERIAL id="woodMaterial">                                  
+            <shininess value="1" />
+            <specular r="0.0" g="0.0" b="0.0" a="1" />        
+            <diffuse r="0.6" g="0.298" b="0.0" a="1" />      
+            <ambient r="0.1" g="0.1" b="0.1" a="1" />         
+            <emission r="0.0" g="0.0" b="0.0" a="1" />       
+        </MATERIAL>
 
-    <!-- Post material -->
-    <MATERIAL id="postMaterial">                                  
-        <shininess value="100" />
-        <specular r="0.0" g="0.0" b="0.0" a="1" />        
-        <diffuse r="0.447" g="0.416" b="0.416" a="1" />       
-        <ambient r="0.0" g="0.0" b="0.0" a="1" />         
-        <emission r="0.0" g="0.0" b="0.0" a="1" />        
-    </MATERIAL>
+        <!-- Post material -->
+        <MATERIAL id="postMaterial">                                  
+            <shininess value="100" />
+            <specular r="0.0" g="0.0" b="0.0" a="1" />        
+            <diffuse r="0.447" g="0.416" b="0.416" a="1" />       
+            <ambient r="0.0" g="0.0" b="0.0" a="1" />         
+            <emission r="0.0" g="0.0" b="0.0" a="1" />        
+        </MATERIAL>
 
-    <!-- Ball material -->
-    <MATERIAL id="ballMaterial">                                  
-        <shininess value="10" />
-        <specular r="0.7" g="0.4" b="0.4" a="1" />        
-        <diffuse r="0.5" g="0.4" b="0.4" a="1" />       
-        <ambient r="0.5" g="0.0" b="0.0" a="1" />         
-        <emission r="0.0" g="0.0" b="0.0" a="1" />        
-    </MATERIAL>
+        <!-- Ball material -->
+        <MATERIAL id="ballMaterial">                                  
+            <shininess value="10" />
+            <specular r="0.7" g="0.4" b="0.4" a="1" />        
+            <diffuse r="0.5" g="0.4" b="0.4" a="1" />       
+            <ambient r="0.5" g="0.0" b="0.0" a="1" />         
+            <emission r="0.0" g="0.0" b="0.0" a="1" />        
+        </MATERIAL>
 
-    <!-- Net material -->
-    <MATERIAL id="netMaterial">                                  
-        <shininess value="10" />
-        <specular r="0.7" g="0.7" b="0.7" a="1" />        
-        <diffuse r="0.5" g="0.5" b="0.5" a="1" />       
-        <ambient r="0.5" g="0.5" b="0.5" a="1" />         
-        <emission r="0.0" g="0.0" b="0.0" a="1" />        
-    </MATERIAL>
+        <!-- Net material -->
+        <MATERIAL id="netMaterial">                                  
+            <shininess value="10" />
+            <specular r="0.7" g="0.7" b="0.7" a="1" />        
+            <diffuse r="0.5" g="0.5" b="0.5" a="1" />       
+            <ambient r="0.5" g="0.5" b="0.5" a="1" />         
+            <emission r="0.0" g="0.0" b="0.0" a="1" />        
+        </MATERIAL>
 
-    <!-- Board material -->
-    <MATERIAL id="basketBoardMaterial">                                  
-        <shininess value="32" />
-        <specular r="0.7" g="0.7" b="0.7" a="1" />        
-        <diffuse r="0.55" g="0.55" b="0.55" a="1" />       
-        <ambient r="0.0" g="0.0" b="0.0" a="1" />         
-        <emission r="0.0" g="0.0" b="0.0" a="1" />        
-    </MATERIAL>
+        <!-- Board material -->
+        <MATERIAL id="basketBoardMaterial">                                  
+            <shininess value="32" />
+            <specular r="0.7" g="0.7" b="0.7" a="1" />        
+            <diffuse r="0.55" g="0.55" b="0.55" a="1" />       
+            <ambient r="0.0" g="0.0" b="0.0" a="1" />         
+            <emission r="0.0" g="0.0" b="0.0" a="1" />        
+        </MATERIAL>
 
-    <!-- Board face material -->
-    <MATERIAL id="basketBoardFMaterial">                                  
-        <shininess value="32" />
-        <specular r="0.7" g="0.7" b="0.7" a="1" />        
-        <diffuse r="0.55" g="0.55" b="0.55" a="1" />       
-        <ambient r="0.0" g="0.0" b="0.0" a="1" />         
-        <emission r="0.0" g="0.0" b="0.0" a="1" />        
-    </MATERIAL>
+        <!-- Board face material -->
+        <MATERIAL id="basketBoardFMaterial">                                  
+            <shininess value="32" />
+            <specular r="0.7" g="0.7" b="0.7" a="1" />        
+            <diffuse r="0.55" g="0.55" b="0.55" a="1" />       
+            <ambient r="0.0" g="0.0" b="0.0" a="1" />         
+            <emission r="0.0" g="0.0" b="0.0" a="1" />        
+        </MATERIAL>
 
-    <!-- Bench material -->
-    <MATERIAL id="benchMaterial">                                  
-        <shininess value="32" />
-        <specular r="0.6" g="0.6" b="0.6" a="1" />        
-        <diffuse r="0.3" g="0.3" b="0.3" a="1" />       
-        <ambient r="0.0" g="0.0" b="0.0" a="1" />         
-        <emission r="0.0" g="0.0" b="0.0" a="1" />        
-    </MATERIAL>
+        <!-- Bench material -->
+        <MATERIAL id="benchMaterial">                                  
+            <shininess value="32" />
+            <specular r="0.6" g="0.6" b="0.6" a="1" />        
+            <diffuse r="0.3" g="0.3" b="0.3" a="1" />       
+            <ambient r="0.0" g="0.0" b="0.0" a="1" />         
+            <emission r="0.0" g="0.0" b="0.0" a="1" />        
+        </MATERIAL>
 
-    <!-- Triangle Material-->
-    <MATERIAL id="triangleMaterial">                                  
-        <shininess value="70" />
-        <specular r="0.63" g="0.73" b="0.63" a="0.55" />        
-        <diffuse r="0.076" g="0.61" b="0.076" a="0.55" />       
-        <ambient r="0.02" g="0.17" b="0.02" a="0.55" />         
-        <emission r="0.0" g="0.0" b="0.0" a="1" />        
-    </MATERIAL>
+        <!-- Triangle Material-->
+        <MATERIAL id="triangleMaterial">                                  
+            <shininess value="70" />
+            <specular r="0.63" g="0.73" b="0.63" a="0.55" />        
+            <diffuse r="0.076" g="0.61" b="0.076" a="0.55" />       
+            <ambient r="0.02" g="0.17" b="0.02" a="0.55" />         
+            <emission r="0.0" g="0.0" b="0.0" a="1" />        
+        </MATERIAL>
 
-    <!-- A default material -->
-    <MATERIAL id="defaultMaterial">                                  
-        <shininess value="1" />
-        <specular r="0.0" g="0.0" b="0.0" a="1" />        
-        <diffuse r="0.4" g="0.4" b="0.4" a="1" />       
-        <ambient r="0.4" g="0.4" b="0.4" a="1" />         
-        <emission r="0.0" g="0.0" b="0.0" a="1" />        
-    </MATERIAL>
+        <!-- A default material -->
+        <MATERIAL id="defaultMaterial">                                  
+            <shininess value="1" />
+            <specular r="0.0" g="0.0" b="0.0" a="1" />        
+            <diffuse r="0.4" g="0.4" b="0.4" a="1" />       
+            <ambient r="0.4" g="0.4" b="0.4" a="1" />         
+            <emission r="0.0" g="0.0" b="0.0" a="1" />        
+        </MATERIAL>
 
-    <!-- Roomba material -->
-    <MATERIAL id="roombaMaterial">                                  
-        <shininess value="100" />
-        <specular r="0.0" g="0.0" b="0.0" a="1" />        
-        <diffuse r="0.447" g="0.416" b="0.416" a="1" />       
-        <ambient r="0.0" g="0.0" b="0.0" a="1" />         
-        <emission r="0.0" g="0.0" b="0.0" a="1" />        
-    </MATERIAL>
+        <!-- Roomba material -->
+        <MATERIAL id="roombaMaterial">                                  
+            <shininess value="100" />
+            <specular r="0.0" g="0.0" b="0.0" a="1" />        
+            <diffuse r="0.447" g="0.416" b="0.416" a="1" />       
+            <ambient r="0.0" g="0.0" b="0.0" a="1" />         
+            <emission r="0.0" g="0.0" b="0.0" a="1" />        
+        </MATERIAL>
 
-    <!--    ********************* GAME MATERIALS ************************        -->
+        <!--    ********************* GAME MATERIALS ************************        -->
 
-    <!-- Floor material -->
-    <MATERIAL id="floorMaterial">                                  
-        <shininess value="32" />
-        <specular r="0.6" g="0.6" b="0.6" a="1" />        
-        <diffuse r="0.3" g="0.3" b="0.3" a="1" />       
-        <ambient r="0.0" g="0.0" b="0.0" a="1" />         
-        <emission r="0.0" g="0.0" b="0.0" a="1" />        
-    </MATERIAL>
+        <!-- Floor material -->
+        <MATERIAL id="floorMaterial">                                  
+            <shininess value="32" />
+            <specular r="0.6" g="0.6" b="0.6" a="1" />        
+            <diffuse r="0.3" g="0.3" b="0.3" a="1" />       
+            <ambient r="0.0" g="0.0" b="0.0" a="1" />         
+            <emission r="0.0" g="0.0" b="0.0" a="1" />        
+        </MATERIAL>
 
-    <!-- Floor material -->
-    <MATERIAL id="wallMaterial">                                  
-        <shininess value="32" />
-        <specular r="0.6" g="0.6" b="0.6" a="1" />        
-        <diffuse r="0.3" g="0.3" b="0.3" a="1" />       
-        <ambient r="0.0" g="0.0" b="0.0" a="1" />         
-        <emission r="0.0" g="0.0" b="0.0" a="1" />        
-    </MATERIAL>
+        <!-- Floor material -->
+        <MATERIAL id="wallMaterial">                                  
+            <shininess value="32" />
+            <specular r="0.6" g="0.6" b="0.6" a="1" />        
+            <diffuse r="0.3" g="0.3" b="0.3" a="1" />       
+            <ambient r="0.0" g="0.0" b="0.0" a="1" />         
+            <emission r="0.0" g="0.0" b="0.0" a="1" />        
+        </MATERIAL>
 
-    <!-- Board Black material -->
-    <MATERIAL id="blackbMaterial">                                  
-        <shininess value="32" />
-        <specular r="0.6" g="0.6" b="0.6" a="1" />        
-        <diffuse r="0.5" g="0.5" b="0.5" a="1" />       
-        <ambient r="0.8" g="0.8" b="0.8" a="1" />         
-        <emission r="0.0" g="0.0" b="0.0" a="1" />        
-    </MATERIAL>
+        <!-- Board Black material -->
+        <MATERIAL id="blackbMaterial">                                  
+            <shininess value="32" />
+            <specular r="0.6" g="0.6" b="0.6" a="1" />        
+            <diffuse r="0.5" g="0.5" b="0.5" a="1" />       
+            <ambient r="0.8" g="0.8" b="0.8" a="1" />         
+            <emission r="0.0" g="0.0" b="0.0" a="1" />        
+        </MATERIAL>
 
-    <!-- Board White material -->
-    <MATERIAL id="whitebMaterial">                                  
-        <shininess value="32" />
-        <specular r="0.6" g="0.6" b="0.6" a="1" />        
-        <diffuse r="0.3" g="0.3" b="0.3" a="1" />       
-        <ambient r="0.8" g="0.8" b="0.8" a="1" />         
-        <emission r="0.0" g="0.0" b="0.0" a="1" />        
-    </MATERIAL>
+        <!-- Board White material -->
+        <MATERIAL id="whitebMaterial">                                  
+            <shininess value="32" />
+            <specular r="0.6" g="0.6" b="0.6" a="1" />        
+            <diffuse r="0.3" g="0.3" b="0.3" a="1" />       
+            <ambient r="0.8" g="0.8" b="0.8" a="1" />         
+            <emission r="0.0" g="0.0" b="0.0" a="1" />        
+        </MATERIAL>
 
-    <!-- Black pieces material -->
-    <MATERIAL id="blackMaterial">                                  
-        <shininess value="38.4" />
-        <specular r="0.13" g="0.13" b="0.15" a="0.82" />        
-        <diffuse r="0.1" g="0.1" b="0.1" a="0.82" />       
-        <ambient r="0.3" g="0.3" b="0.3" a="0.82" />         
-        <emission r="0.0" g="0.0" b="0.0" a="1" />        
-    </MATERIAL>
+        <!-- Black pieces material -->
+        <MATERIAL id="blackMaterial">                                  
+            <shininess value="38.4" />
+            <specular r="0.13" g="0.13" b="0.15" a="0.82" />        
+            <diffuse r="0.1" g="0.1" b="0.1" a="0.82" />       
+            <ambient r="0.3" g="0.3" b="0.3" a="0.82" />         
+            <emission r="0.0" g="0.0" b="0.0" a="1" />        
+        </MATERIAL>
 
-    <!-- White pieces material -->
-    <MATERIAL id="whiteMaterial">                                  
-        <shininess value="11.3" />
-        <specular r="0.3" g="0.3" b="0.3" a="0.92" />        
-        <diffuse r="1.0" g="0.83" b="0.83" a="0.92" />       
-        <ambient r="0.25" g="0.21" b="0.21" a="0.92" />         
-        <emission r="0.0" g="0.0" b="0.0" a="1" />        
-    </MATERIAL>
+        <!-- White pieces material -->
+        <MATERIAL id="whiteMaterial">                                  
+            <shininess value="11.3" />
+            <specular r="0.3" g="0.3" b="0.3" a="0.92" />        
+            <diffuse r="1.0" g="0.83" b="0.83" a="0.92" />       
+            <ambient r="0.25" g="0.21" b="0.21" a="0.92" />         
+            <emission r="0.0" g="0.0" b="0.0" a="1" />        
+        </MATERIAL>
 
-</MATERIALS>
-
-
-<!-- The animations -->
-<ANIMATIONS>
-
-    <ANIMATION id="lin11" speed="2" type="linear">
-        <controlpoint xx="0" yy="0" zz="0" />
-        <controlpoint xx="5" yy="0" zz="5" />
-        <controlpoint xx="5" yy="0" zz="12" />
-    </ANIMATION>
-
-    <ANIMATION id="lin12" speed="2" type="linear">
-        <controlpoint xx="0" yy="0" zz="0" />
-        <controlpoint xx="4" yy="0" zz="-7" />
-    </ANIMATION>
-
-    <ANIMATION id="lin2" speed="3" type="linear">
-        <controlpoint xx="0" yy="0" zz="0" />
-        <controlpoint xx="-7" yy="0" zz="2" />
-    </ANIMATION>
-
-    <ANIMATION id="bez1" speed="3" type="bezier">
-        <controlpoint xx="0" yy="0" zz="0" />
-        <controlpoint xx="5" yy="0" zz="0" />
-        <controlpoint xx="7" yy="0" zz="5" />
-        <controlpoint xx="3" yy="0" zz="3" />
-    </ANIMATION>
-
-    <ANIMATION id="bez2" speed="3" type="bezier">
-        <controlpoint xx="0" yy="0" zz="0" />
-        <controlpoint xx="4" yy="0" zz="-4" />
-        <controlpoint xx="6" yy="0" zz="3" />
-        <controlpoint xx="8" yy="0" zz="-3" />
-    </ANIMATION>
-
-    <ANIMATION id="circ1" speed="2" type="circular" centerx="0" centery="0" centerz="0" radius="2" startang="0" rotang="180" />
-
-    <ANIMATION id="combo1" type="combo">
-
-        <SPANREF id="lin11" />
-        <SPANREF id="circ1" />
-        <SPANREF id="lin12" />
-    </ANIMATION>
-
-    <ANIMATION id="combo2" type="combo">
-
-        <SPANREF id="bez1" />
-        <SPANREF id="lin2" />
-        <SPANREF id="bez2" />
-    </ANIMATION>
-
-</ANIMATIONS>
+    </MATERIALS>
 
 
-<!-- The leaves -->
-<LEAVES>
-</LEAVES>
+    <!-- The animations -->
+    <ANIMATIONS>
+
+        <ANIMATION id="lin11" speed="2" type="linear">
+            <controlpoint xx="0" yy="0" zz="0" />
+            <controlpoint xx="5" yy="0" zz="5" />
+            <controlpoint xx="5" yy="0" zz="12" />
+        </ANIMATION>
+
+        <ANIMATION id="lin12" speed="2" type="linear">
+            <controlpoint xx="0" yy="0" zz="0" />
+            <controlpoint xx="4" yy="0" zz="-7" />
+        </ANIMATION>
+
+        <ANIMATION id="lin2" speed="3" type="linear">
+            <controlpoint xx="0" yy="0" zz="0" />
+            <controlpoint xx="-7" yy="0" zz="2" />
+        </ANIMATION>
+
+        <ANIMATION id="bez1" speed="3" type="bezier">
+            <controlpoint xx="0" yy="0" zz="0" />
+            <controlpoint xx="5" yy="0" zz="0" />
+            <controlpoint xx="7" yy="0" zz="5" />
+            <controlpoint xx="3" yy="0" zz="3" />
+        </ANIMATION>
+
+        <ANIMATION id="bez2" speed="3" type="bezier">
+            <controlpoint xx="0" yy="0" zz="0" />
+            <controlpoint xx="4" yy="0" zz="-4" />
+            <controlpoint xx="6" yy="0" zz="3" />
+            <controlpoint xx="8" yy="0" zz="-3" />
+        </ANIMATION>
+
+        <ANIMATION id="circ1" speed="2" type="circular" centerx="0" centery="0" centerz="0" radius="2" startang="0" rotang="180" />
+
+        <ANIMATION id="combo1" type="combo">
+
+            <SPANREF id="lin11" />
+            <SPANREF id="circ1" />
+            <SPANREF id="lin12" />
+        </ANIMATION>
+
+        <ANIMATION id="combo2" type="combo">
+
+            <SPANREF id="bez1" />
+            <SPANREF id="lin2" />
+            <SPANREF id="bez2" />
+        </ANIMATION>
+
+    </ANIMATIONS>
 
 
-<!-- The nodes -->
-<NODES>
+    <!-- The leaves -->
+    <LEAVES>
+    </LEAVES>
 
-    <ROOT id="root" />     
 
-    <!-- The root node -->
-    <NODE id="root">       
-        <MATERIAL id="defaultMaterial" />         
-        <TEXTURE id="null" />  
+    <!-- The nodes -->
+    <NODES>
 
-        <DESCENDANTS>  
-            <NODEREF id="tabuleiroaux" />
-           <!-- <NODEREF id="pretas" />
-            <NODEREF id="brancas" /> -->
-        </DESCENDANTS>
-    </NODE>
+        <ROOT id="root" />     
 
-    <NODE id="tabuleiroaux">      
-        <MATERIAL id="woodMaterial" />     
-        <TEXTURE id ="wood" />                 
+        <!-- The root node -->
+        <NODE id="root">       
+            <MATERIAL id="defaultMaterial" />         
+            <TEXTURE id="null" />  
 
-        <TRANSLATION x="40" y="0" z="0" />
-        <SCALE sx="20" sy="1" sz="40" />
-        <TRANSLATION x="0" y="0" z="1" />
-        <ROTATION axis="x" angle="-90" />
+            <DESCENDANTS>  
+                <NODEREF id="tabuleiroaux" />
+                <NODEREF id="walls" />
+                <NODEREF id="floor" />
+            </DESCENDANTS>
+        </NODE>
 
-        <DESCENDANTS>
-            <LEAF id="boardquad" type="rectangle" args="0 1 1 0" />        
-        </DESCENDANTS>
-    </NODE>
-    
+        <NODE id="tabuleiroaux">      
+            <MATERIAL id="woodMaterial" />     
+            <TEXTURE id ="wood" />                 
 
-</NODES>
+            <TRANSLATION x="40" y="0" z="0" />
+            <SCALE sx="20" sy="1" sz="40" />
+            <TRANSLATION x="0" y="0" z="1" />
+            <ROTATION axis="x" angle="-90" />
+
+            <DESCENDANTS>
+                <LEAF id="boardquad" type="rectangle" args="0 1 1 0" />        
+            </DESCENDANTS>
+        </NODE>
+
+        <NODE id="walls">      
+            <MATERIAL id="wallMaterial" />     
+            <TEXTURE id ="wall" />  
+
+            <TRANSLATION x="0" y="-1" z="0" />
+
+            <DESCENDANTS>
+                <NODEREF id="wall1" /> 
+                <NODEREF id="wall2" /> 
+                <NODEREF id="wall3" /> 
+                <NODEREF id="wall4" />        
+            </DESCENDANTS>
+        </NODE>    
+
+        <NODE id="wall1">      
+            <MATERIAL id="null" />     
+            <TEXTURE id ="null" />                 
+
+            <TRANSLATION x="-10" y="0" z="-10" />
+            <SCALE sx="80" sy="40" sz="1" />
+
+            <DESCENDANTS>
+                <LEAF id="w1" type="rectangle" args="0 1 1 0" />        
+            </DESCENDANTS>
+        </NODE>
+
+        <NODE id="wall2">      
+            <MATERIAL id="null" />     
+            <TEXTURE id ="null" />                 
+
+            <TRANSLATION x="70" y="0" z="-10" />
+            <ROTATION axis="y" angle="-90"/>
+            <SCALE sx="60" sy="40" sz="1" />
+
+            <DESCENDANTS>
+                <LEAF id="w2" type="rectangle" args="0 1 1 0" />        
+            </DESCENDANTS>
+        </NODE>
+
+        <NODE id="wall3">      
+            <MATERIAL id="null" />     
+            <TEXTURE id ="null" />                 
+
+            <TRANSLATION x="70" y="0" z="50" />
+            <ROTATION axis="y" angle="180" />
+            <SCALE sx="80" sy="40" sz="1" />
+
+            <DESCENDANTS>
+                <LEAF id="w3" type="rectangle" args="0 1 1 0" />        
+            </DESCENDANTS>
+        </NODE>
+
+        <NODE id="wall4">      
+            <MATERIAL id="null" />     
+            <TEXTURE id ="null" />                 
+
+            <TRANSLATION x="-10" y="0" z="50" />
+            <ROTATION axis="y" angle="90" />
+            <SCALE sx="60" sy="40" sz="1" />
+
+            <DESCENDANTS>
+                <LEAF id="w4" type="rectangle" args="0 1 1 0" />        
+            </DESCENDANTS>
+        </NODE>
+
+        <NODE id="floor">      
+            <MATERIAL id="floorMaterial" />     
+            <TEXTURE id ="floor" />                 
+
+            <TRANSLATION x="-10" y="-1" z="50" />
+            <ROTATION axis="x" angle="-90" />
+            <SCALE sx="80" sy="60" sz="1" />
+
+            <DESCENDANTS>
+                <LEAF id="frect" type="rectangle" args="0 1 1 0" />        
+            </DESCENDANTS>
+        </NODE>
+
+
+    </NODES>
 
 </SCENE>
