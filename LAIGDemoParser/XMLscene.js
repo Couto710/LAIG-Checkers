@@ -47,6 +47,10 @@ XMLscene.prototype.init = function(application) {
 
     this.setPickEnabled(true);
 
+    this.player = 'w';
+    this.pickedPiece = null;
+    this.pickedPosition = null;
+
 }
 
 XMLscene.prototype.updateFactorTime = function(date){
@@ -204,9 +208,67 @@ XMLscene.prototype.logPicking = function() {
                 if(obj){
                     var pid = this.pickResults[i][1];
                     console.log("picked object:  " + obj + " ------ pick id: " + pid);
+                    
+                    if(obj instanceof Piece && obj.type.toLowerCase() == this.player){
+                        console.log("Piece position:   " + obj.position[0] + ", " + obj.position[1]);
+                        this.pickedPiece = obj;
+                    }
+
+                    if(this.pickedPiece && obj instanceof MyQuad){
+                        console.log("Destiny Position: " + Math.floor(pid/10) + ", " + pid%10);
+                        this.pickedPosition = [Math.floor(pid/10), pid%10];
+                        this.sendRequest([this.pickedPiece.position[0], this.pickedPiece.position[1]], [this.pickedPosition[0], this.pickedPosition[1]]);
+                    }
                 }
             }
             this.pickResults.splice(0, this.pickResults.length);
         }
     }
 }
+
+XMLscene.prototype.sendRequest = function (pos, despos) {
+    var request = new XMLHttpRequest();
+    request.scene=this;
+    request.open('POST', 'http://localhost:8001/', true);
+
+    request.onload = this.handleReply;
+    request.onerror = function(){console.log("Error waiting for response");};
+
+    request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+    var str = this.getGameState();
+    var body = "";
+    for (var i = 0; i < str.length; i++) {
+        for (var j = 0; j < str[i].length; j++) {
+            body+=str[i][j];
+        };
+        body+='\n';
+    };
+    body+= pos[0] + " " + pos[1] + "\n";
+    body+= despos[0] + " " + despos[1] + "\n";
+
+    request.send(body);
+    console.log("request sent---------------------------------");
+};
+
+XMLscene.prototype.getGameState = function () {
+    var ret = [
+    ['*','*','*','*','*','*','*','*','*','*'],
+    ['*',' ',' ',' ',' ',' ',' ',' ',' ','*'],
+    ['*',' ',' ',' ',' ',' ',' ',' ',' ','*'],
+    ['*',' ',' ',' ',' ',' ',' ',' ',' ','*'],
+    ['*',' ',' ',' ',' ',' ',' ',' ',' ','*'],
+    ['*',' ',' ',' ',' ',' ',' ',' ',' ','*'],
+    ['*',' ',' ',' ',' ',' ',' ',' ',' ','*'],
+    ['*',' ',' ',' ',' ',' ',' ',' ',' ','*'],
+    ['*',' ',' ',' ',' ',' ',' ',' ',' ','*'],
+    ['*','*','*','*','*','*','*','*','*','*']
+    ];
+
+    for(var i=0;i<this.graph.blackpieces.length;i++) {
+        ret[this.graph.blackpieces[i].position[0]][this.graph.blackpieces[i].position[1]] = this.graph.blackpieces[i].type;
+    }
+    for(var i=0;i<this.graph.whitepieces.length;i++) {
+        ret[this.graph.whitepieces[i].position[0]][this.graph.whitepieces[i].position[1]] = this.graph.whitepieces[i].type;
+    }
+    return ret;
+};
