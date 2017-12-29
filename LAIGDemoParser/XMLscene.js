@@ -194,8 +194,7 @@ XMLscene.prototype.display = function() {
 XMLscene.prototype.update = function(currTime){
     var timedif = (currTime - this.time) * 0.001;
     this.time = currTime;
-    for(var node in this.graph.nodes)
-        this.graph.nodes[node].updateAnimation(timedif);
+    this.graph.displayScene();
 }
 
 
@@ -231,7 +230,7 @@ XMLscene.prototype.sendRequest = function (pos, despos) {
     request.scene=this;
     request.open('POST', 'http://localhost:8001/', true);
 
-    request.onload = this.handleReply;
+    request.onload = this.handler;
     request.onerror = function(){console.log("Error waiting for response");};
 
     request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
@@ -264,11 +263,31 @@ XMLscene.prototype.getGameState = function () {
     ['*','*','*','*','*','*','*','*','*','*']
     ];
 
-    for(var i=0;i<this.graph.blackpieces.length;i++) {
-        ret[this.graph.blackpieces[i].position[0]][this.graph.blackpieces[i].position[1]] = this.graph.blackpieces[i].type;
+    for(var i = 0; i < this.graph.blackpieces.length; i++) {
+        ret[this.graph.blackpieces[i].position[1]][this.graph.blackpieces[i].position[0]] = this.graph.blackpieces[i].type;
     }
-    for(var i=0;i<this.graph.whitepieces.length;i++) {
-        ret[this.graph.whitepieces[i].position[0]][this.graph.whitepieces[i].position[1]] = this.graph.whitepieces[i].type;
+    for(var i = 0; i < this.graph.whitepieces.length; i++) {
+        ret[this.graph.whitepieces[i].position[1]][this.graph.whitepieces[i].position[0]] = this.graph.whitepieces[i].type;
     }
     return ret;
+};
+
+XMLscene.prototype.handler = function(data){
+
+    var resp = data.target.response.split("\n");
+
+    this.scene.graph.updatePieces(resp);
+
+    if(this.scene.pickedPiece)
+        this.scene.pickedPiece = null;
+
+    if(resp[10] == "INVALID")
+        console.log("Invalid Move");
+
+    else if(resp[10] == "VALID"){
+        if(this.scene.player != resp[11])
+            this.scene.player = resp[11];
+
+        console.log("Valid move");
+    }
 };

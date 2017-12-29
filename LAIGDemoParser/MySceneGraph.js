@@ -19,7 +19,7 @@ var NODES_INDEX = 7;
     
     // Establish bidirectional references between scene and graph.
     this.scene = scene;
-    scene.graph = this;
+    this.scene.graph = this;
     
     this.nodes = [];
     this.selectableNodes = ["None"];
@@ -1779,4 +1779,30 @@ MySceneGraph.prototype.drawEverything = function(node, mat, tex){
     }
 
     this.scene.popMatrix();
+}
+
+MySceneGraph.prototype.updatePieces = function(response){
+
+    console.log(response);
+    console.log("================");
+
+    console.log(this.blackpieces);
+    console.log("****************");
+    console.log(this.whitepieces);
+    console.log("*****************");
+
+
+    this.whitepieces = [];
+    this.blackpieces = [];
+    for(var i = 0; i < response.length-2; i++){
+        for(var j = 0; j < response[i].length; j++){
+            if(response[i].charAt(j) == 'w' || response[i].charAt(j) == 'W')
+                this.whitepieces.push(new Piece(this.scene, this.materials['whiteMaterial'], this.textures['marmore'], [j, i], response[i].charAt(j)));
+            else if(response[i].charAt(j) == 'b' || response[i].charAt(j) == 'B')
+                this.blackpieces.push(new Piece(this.scene, this.materials['blackMaterial'], this.textures['basalto'], [j, i], response[i].charAt(j)));
+        }
+    }
+    console.log(this.blackpieces);
+    console.log("-----------------");
+    console.log(this.whitepieces);
 }
