@@ -15,6 +15,7 @@ function XMLscene(interface) {
     this.sceneStrTime = strDate.getTime() * 0.001;
 
     this.selectableNodes = "None";
+    this.cameras = [[vec3.fromValues(6, 20, 30),vec3.fromValues(6, 0, 5)],[vec3.fromValues(6, 20, -20),vec3.fromValues(6, 1, 4)]]
 
 }
 
@@ -103,21 +104,23 @@ XMLscene.prototype.initCameras = function() {
  */
 XMLscene.prototype.onGraphLoaded = function() 
 {
+    this.cam1 = [vec3.fromValues(6, 20, 30),vec3.fromValues(6, 0, 5)];
+    this.cam2 = [vec3.fromValues(6, 20, -20),vec3.fromValues(6, 0, 5)];
+    this.cams = ["camera1","camera2"];
     this.camera.near = this.graph.near;
     this.camera.far = this.graph.far;
     this.axis = new CGFaxis(this,this.graph.referenceLength);
-    
     this.setGlobalAmbientLight(this.graph.ambientIllumination[0], this.graph.ambientIllumination[1], 
     this.graph.ambientIllumination[2], this.graph.ambientIllumination[3]);
-    
     this.gl.clearColor(this.graph.background[0], this.graph.background[1], this.graph.background[2], this.graph.background[3]);
-    
     this.initLights();
 
     // Adds lights group.
     this.interface.addLightsGroup(this.graph.lights);
     // Adds shader group.
     this.interface.addShaderNodes(this.graph.selectableNodes);
+    // Adds cameras group.
+    this.interface.addCameras(this.cams);
 }
 
 /**
@@ -149,6 +152,7 @@ XMLscene.prototype.display = function() {
 		// Draw axis
 		this.axis.display();
 
+
         var i = 0;
         for (var key in this.lightValues) {
             if (this.lightValues.hasOwnProperty(key)) {
@@ -175,7 +179,6 @@ XMLscene.prototype.display = function() {
 
         // Displays the scene.
         this.graph.displayScene();
-
     }
 	else
 	{
@@ -195,8 +198,10 @@ XMLscene.prototype.update = function(currTime){
     var timedif = (currTime - this.time) * 0.001;
     this.time = currTime;
     this.graph.displayScene();
-}
 
+
+
+}
 
 XMLscene.prototype.logPicking = function() {
 
@@ -217,10 +222,12 @@ XMLscene.prototype.logPicking = function() {
                         console.log("Destiny Position: " + Math.floor(pid/10) + ", " + pid%10);
                         this.pickedPosition = [Math.floor(pid/10), pid%10];
                         this.sendRequest([this.pickedPiece.position[0], this.pickedPiece.position[1]], [this.pickedPosition[0], this.pickedPosition[1]]);
+                        this.graph.selectableNodes.push(pid/10);
                     }
                 }
             }
             this.pickResults.splice(0, this.pickResults.length);
+
         }
     }
 }
@@ -247,9 +254,24 @@ XMLscene.prototype.sendRequest = function (pos, despos) {
 
     request.send(body);
     console.log("request sent---------------------------------");
+
+
+     if(this.player == 'b' || this.player == 'B' ){
+        this.camera.setPosition(this.cameras[0][0]);
+        this.camera.setTarget(this.cameras[0][1]);
+        }
+                    
+    else if(this.player == 'w' || this.player == 'W'){
+        this.camera.setPosition(this.cameras[1][0]);
+        this.camera.setTarget(this.cameras[1][1]);
+        }
+
 };
 
+
 XMLscene.prototype.getGameState = function () {
+    
+
     var ret = [
     ['*','*','*','*','*','*','*','*','*','*'],
     ['*',' ',' ',' ',' ',' ',' ',' ',' ','*'],
@@ -269,6 +291,9 @@ XMLscene.prototype.getGameState = function () {
     for(var i = 0; i < this.graph.whitepieces.length; i++) {
         ret[this.graph.whitepieces[i].position[1]][this.graph.whitepieces[i].position[0]] = this.graph.whitepieces[i].type;
     }
+
+
+
     return ret;
 };
 
@@ -285,9 +310,12 @@ XMLscene.prototype.handler = function(data){
         console.log("Invalid Move");
 
     else if(resp[10] == "VALID"){
-        if(this.scene.player != resp[11])
+
+       if(this.scene.player != resp[11])
             this.scene.player = resp[11];
 
         console.log("Valid move");
+
+
     }
 };
