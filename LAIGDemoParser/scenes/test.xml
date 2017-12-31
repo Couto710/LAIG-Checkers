@@ -342,7 +342,7 @@
             </DESCENDANTS>
         </NODE>
 
-        <NODE id="tabuleiroaux">      
+        <NODE id="tabuleiroaux" selectable="true">      
             <MATERIAL id="woodMaterial" />     
             <TEXTURE id ="wood" />                 
 

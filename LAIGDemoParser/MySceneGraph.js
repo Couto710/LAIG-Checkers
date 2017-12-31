@@ -1800,9 +1800,11 @@ MySceneGraph.prototype.updatePieces = function(response){
     for(var i = 0; i < response.length-2; i++){
         for(var j = 0; j < response[i].length; j++){
             if(response[i].charAt(j) == 'w' || response[i].charAt(j) == 'W')
-                this.whitepieces.push(new Piece(this.scene, this.materials['whiteMaterial'], this.textures['marmore'], [j, i], response[i].charAt(j)));
+               this.whitepieces.push(new Piece(this.scene, this.materials['whiteMaterial'], this.textures['marmore'], [j, i], response[i].charAt(j)));
+           
             else if(response[i].charAt(j) == 'b' || response[i].charAt(j) == 'B')
                 this.blackpieces.push(new Piece(this.scene, this.materials['blackMaterial'], this.textures['basalto'], [j, i], response[i].charAt(j)));
+            
         }
     }
 }

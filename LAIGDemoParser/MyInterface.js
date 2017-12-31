@@ -46,6 +46,7 @@ MyInterface.prototype.addLightsGroup = function(lights) {
             group.add(this.scene.lightValues, key);
         }
     }
+
 }
 
 MyInterface.prototype.addShaderNodes = function(nodes)
@@ -53,6 +54,15 @@ MyInterface.prototype.addShaderNodes = function(nodes)
     var shadersGroup = this.gui.addFolder("Shaders");
     this.gui.add(this.scene, "selectableNodes", nodes).name("Select Node");
 }
+
+MyInterface.prototype.addCameras = function(cameras)
+{
+    var shadersGroup = this.gui.addFolder("Cameras");
+    this.gui.add(this.scene, "cams", cameras).name("Select Camera");
+
+}
+
+
 
 
 
