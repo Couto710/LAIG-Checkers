@@ -112,13 +112,12 @@ XMLscene.prototype.onGraphLoaded = function()
     this.cam1 = [vec3.fromValues(6, 20, 30),vec3.fromValues(6, 0, 5)];
     this.cam2 = [vec3.fromValues(6, 20, -20),vec3.fromValues(6, 0, 5)];
     this.cams = ["camera1","camera2"];
-
     this.camera.near = this.graph.near;
     this.camera.far = this.graph.far;
     this.axis = new CGFaxis(this,this.graph.referenceLength);
     this.setGlobalAmbientLight(this.graph.ambientIllumination[0], this.graph.ambientIllumination[1], 
-
-    this.graph.ambientIllumination[2], this.graph.ambientIllumination[3]);
+        this.graph.ambientIllumination[2], this.graph.ambientIllumination[3]);
+    
     this.gl.clearColor(this.graph.background[0], this.graph.background[1], this.graph.background[2], this.graph.background[3]);
     this.initLights();
 
@@ -219,7 +218,7 @@ XMLscene.prototype.update = function(currTime){
 
 
 
-}
+
 
 XMLscene.prototype.logPicking = function() {
 
@@ -274,7 +273,6 @@ XMLscene.prototype.sendRequest = function (pos, despos) {
     body+= despos[0] + " " + despos[1] + "\n";
 
     request.send(body);
-    
     console.log("request sent---------------------------------");
 
 
