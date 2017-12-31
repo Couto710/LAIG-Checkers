@@ -4,7 +4,7 @@ var DEGREE_TO_RAD = Math.PI / 180;
  * XMLscene class, representing the scene that is to be rendered.
  * @constructor
  */
-function XMLscene(interface) {
+ function XMLscene(interface) {
     CGFscene.call(this);
 
     this.interface = interface;
@@ -24,7 +24,7 @@ XMLscene.prototype.constructor = XMLscene;
 /**
  * Initializes the scene, setting some WebGL defaults, initializing the camera and the axis.
  */
-XMLscene.prototype.init = function(application) {
+ XMLscene.prototype.init = function(application) {
     CGFscene.prototype.init.call(this, application);
 
     this.shader = new CGFshader(this.gl, "shaders/uScale.vert", "shaders/uScale.frag");
@@ -51,6 +51,10 @@ XMLscene.prototype.init = function(application) {
     this.pickedPiece = null;
     this.pickedPosition = null;
 
+    this.piecemoving = null;
+    this.pieceanimation = null;
+    this.piecemovepos = null;
+
 }
 
 XMLscene.prototype.updateFactorTime = function(date){
@@ -60,7 +64,7 @@ XMLscene.prototype.updateFactorTime = function(date){
 /**
  * Initializes the scene lights with the values read from the LSX file.
  */
-XMLscene.prototype.initLights = function() {
+ XMLscene.prototype.initLights = function() {
     var i = 0;
     // Lights index.
     
@@ -94,21 +98,21 @@ XMLscene.prototype.initLights = function() {
 /**
  * Initializes the scene cameras.
  */
-XMLscene.prototype.initCameras = function() {
+ XMLscene.prototype.initCameras = function() {
     this.camera = new CGFcamera(0.4,0.1,500,vec3.fromValues(6, 20, 30),vec3.fromValues(6, 0, 5));
 }
 
 /* Handler called when the graph is finally loaded. 
  * As loading is asynchronous, this may be called already after the application has started the run loop
  */
-XMLscene.prototype.onGraphLoaded = function() 
-{
+ XMLscene.prototype.onGraphLoaded = function() 
+ {
     this.camera.near = this.graph.near;
     this.camera.far = this.graph.far;
     this.axis = new CGFaxis(this,this.graph.referenceLength);
     
     this.setGlobalAmbientLight(this.graph.ambientIllumination[0], this.graph.ambientIllumination[1], 
-    this.graph.ambientIllumination[2], this.graph.ambientIllumination[3]);
+        this.graph.ambientIllumination[2], this.graph.ambientIllumination[3]);
     
     this.gl.clearColor(this.graph.background[0], this.graph.background[1], this.graph.background[2], this.graph.background[3]);
     
@@ -123,7 +127,7 @@ XMLscene.prototype.onGraphLoaded = function()
 /**
  * Displays the scene.
  */
-XMLscene.prototype.display = function() {
+ XMLscene.prototype.display = function() {
     // ---- BEGIN Background, camera and axis setup
     this.logPicking();
     this.clearPickRegistration();
@@ -177,12 +181,12 @@ XMLscene.prototype.display = function() {
         this.graph.displayScene();
 
     }
-	else
-	{
+    else
+    {
 		// Draw axis
 		this.axis.display();
 	}
-    
+
 
     this.popMatrix();
     
@@ -194,7 +198,17 @@ XMLscene.prototype.display = function() {
 XMLscene.prototype.update = function(currTime){
     var timedif = (currTime - this.time) * 0.001;
     this.time = currTime;
-    this.graph.displayScene();
+
+    if(this.piecemoving){
+        if(!this.piecemoving.playing){
+            this.piecemoving = null;
+            this.pieceanimation = null;
+            this.piecemovepos = null;
+        }
+        else
+            this.piecemoving.updateAnimation(timedif);
+    }
+
 }
 
 
@@ -207,7 +221,7 @@ XMLscene.prototype.logPicking = function() {
                 if(obj){
                     var pid = this.pickResults[i][1];
                     console.log("picked object:  " + obj + " ------ pick id: " + pid);
-                    
+
                     if(obj instanceof Piece && obj.type.toLowerCase() == this.player){
                         console.log("Piece position:   " + obj.position[0] + ", " + obj.position[1]);
                         this.pickedPiece = obj;
@@ -234,6 +248,9 @@ XMLscene.prototype.sendRequest = function (pos, despos) {
     request.onerror = function(){console.log("Error waiting for response");};
 
     request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+
+    this.piecemovepos = [pos, despos];
+
     var str = this.getGameState();
     var body = "";
     for (var i = 0; i < str.length; i++) {
@@ -246,7 +263,6 @@ XMLscene.prototype.sendRequest = function (pos, despos) {
     body+= despos[0] + " " + despos[1] + "\n";
 
     request.send(body);
-    console.log("request sent---------------------------------");
 };
 
 XMLscene.prototype.getGameState = function () {
@@ -276,18 +292,62 @@ XMLscene.prototype.handler = function(data){
 
     var resp = data.target.response.split("\n");
 
-    this.scene.graph.updatePieces(resp);
+    this.scene.graph.updatePieces(resp);    
 
-    if(this.scene.pickedPiece)
-        this.scene.pickedPiece = null;
-
-    if(resp[10] == "INVALID")
+    if(resp[10] == "INVALID"){
+        this.scene.piecemovepos = null;
         console.log("Invalid Move");
+    }
 
     else if(resp[10] == "VALID"){
         if(this.scene.player != resp[11])
             this.scene.player = resp[11];
 
+        for(var i = 0; i < this.scene.graph.blackpieces.length; i ++){
+            if(this.scene.graph.blackpieces[i].position.equals(this.scene.piecemovepos[1]))
+                this.scene.piecemoving = this.scene.graph.blackpieces[i];
+        }
+
+        for(var i = 0; i < this.scene.graph.whitepieces.length; i ++){
+            if(this.scene.graph.whitepieces[i].position.equals(this.scene.piecemovepos[1]))
+                this.scene.piecemoving = this.scene.graph.whitepieces[i];
+        }
+
+        var linearCP = [[0, 0, 0],
+        [0, 3, 0],
+        [(this.scene.piecemovepos[1][0]-this.scene.piecemovepos[0][0])*5, 3, (this.scene.piecemovepos[1][1]-this.scene.piecemovepos[0][1])*5],
+        [(this.scene.piecemovepos[1][0]-this.scene.piecemovepos[0][0])*5, 0, (this.scene.piecemovepos[1][1]-this.scene.piecemovepos[0][1])*5]];
+        this.scene.pieceanimation = new LinearAnimation(this.scene.graph, "anid", 10, linearCP, "linear");
+        this.scene.piecemoving.animation = this.scene.pieceanimation;
+        this.scene.piecemoving.playing = true;
+
         console.log("Valid move");
     }
+
+    if(this.scene.pickedPiece)
+        this.scene.pickedPiece = null;
 };
+
+Array.prototype.equals = function (array) {
+    // if the other array is a falsy value, return
+    if (!array)
+        return false;
+
+    // compare lengths - can save a lot of time 
+    if (this.length != array.length)
+        return false;
+
+    for (var i = 0, l=this.length; i < l; i++) {
+        // Check if we have nested arrays
+        if (this[i] instanceof Array && array[i] instanceof Array) {
+            // recurse into the nested arrays
+            if (!this[i].equals(array[i]))
+                return false;       
+        }           
+        else if (this[i] != array[i]) { 
+            // Warning - two different object instances will never be equal: {x:20} != {x:20}
+            return false;   
+        }           
+    }       
+    return true;
+}
