@@ -276,15 +276,7 @@ XMLscene.prototype.sendRequest = function (pos, despos) {
     console.log("request sent---------------------------------");
 
 
-     if(this.player == 'b' || this.player == 'B' ){
-        this.camera.setPosition(this.cameras[0][0]);
-        this.camera.setTarget(this.cameras[0][1]);
-        }
-                    
-    else if(this.player == 'w' || this.player == 'W'){
-        this.camera.setPosition(this.cameras[1][0]);
-        this.camera.setTarget(this.cameras[1][1]);
-        }
+   
 
 };
 
@@ -342,6 +334,19 @@ XMLscene.prototype.handler = function(data){
             if(this.scene.graph.whitepieces[i].position.equals(this.scene.piecemovepos[1]))
                 this.scene.piecemoving = this.scene.graph.whitepieces[i];
         }
+
+        //camera player update
+        if(this.scene.player == 'b' || this.scene.player == 'B' ){
+        	this.scene.camera.setPosition(this.scene.cameras[1][0]);
+        	this.scene.camera.setTarget(this.scene.cameras[1][1]);
+        }
+                    
+        else if(this.scene.player == 'w' || this.scene.player == 'W'){
+        	this.scene.camera.setPosition(this.scene.cameras[0][0]);
+        	this.scene.camera.setTarget(this.scene.cameras[0][1]);
+        }
+
+
 
         var linearCP = [[0, 0, 0],
         [0, 3, 0],
